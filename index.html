@@ -1,0 +1,62 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Генератор случайных чисел</title>
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="generator.js"></script>
+	<script src="Chart.js"></script>
+</head>
+<body>
+	<div class="main">
+		<div class="center-container">
+			<div class="middle-container">
+				<h3>Количество элементов в выборке:</h3>
+				<select>
+			 		<option>50</option>
+		  			<option>100</option>
+		  			<option>500</option>
+		  			<option>1000</option>
+		  			<option>5000</option>
+		  			<option>10000</option>
+		  			<option>25000</option>
+		  			<option>50000</option>
+				</select>
+				<button class="generate-btn">Сгенерировать</button>
+
+			</div>
+
+
+			<div class="middle-container">
+				<div style="width: 50%">
+					<canvas id="canvas" height="450" width="800"></canvas>
+				</div>
+
+
+				<script>
+				var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+				var barChartData = {
+					labels : ["January","February","March","April","May","June","July"],
+					datasets : [
+						{
+							fillColor : "rgba(220,220,220,0.5)",
+							strokeColor : "rgba(220,220,220,0.8)",
+							highlightFill: "rgba(220,220,220,0.75)",
+							highlightStroke: "rgba(220,220,220,1)",
+							data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+						}
+					]
+				}
+				window.onload = function(){
+					var ctx = document.getElementById("canvas").getContext("2d");
+					window.myBar = new Chart(ctx).Bar(barChartData, {
+						responsive : true
+					});
+				}
+				</script>
+			</div>		
+		</div>
+	</div>
+
+
+</body>
+</html>
